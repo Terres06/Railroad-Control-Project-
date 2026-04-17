@@ -21,4 +21,21 @@ public class Locomotiva extends Vagao implements Serializable {
         return "Locomotiva: comprimento = " + getComprimento() + ", peso = " + getPeso() + ", potência = " + potencia;
     }
     
+    @Override
+    public void setComprimento(double comprimento){
+        if (comprimento <= 23 && comprimento >= 18){
+            super.setComprimento(comprimento);
+        } else {
+            System.out.println("Comprimento inválido para locomotiva. Deve ser entre 18 e 23 metros.");
+        }
+    }
+
+    @Override
+    public void setPeso(double peso){
+        if (peso <= 200 && peso >= 100){
+            super.setPeso(peso);
+        } else {
+            System.out.println("Peso inválido para locomotiva. Deve ser entre 100 e 200 toneladas.");
+        }
+    }
 }
