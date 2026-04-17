@@ -46,4 +46,25 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         salvar();
     }
 
+    public double calcularPesoTotal(){
+        double pesoTotal = 0;
+        rewind();
+        for (int i = 0; i < size; i++){
+            Vagao v = (Vagao) next();
+            pesoTotal += v.getPeso();
+        }
+        return pesoTotal;
+    }
+
+    public double calcularCargaTotal(){
+        double cargaTotal = 0;
+        rewind();
+        for (int i = 0; i < size; i++){
+            Object obj = next();
+            if (obj instanceof Carga c){
+                cargaTotal += c.getPeso() * 0.75;
+            }
+        }
+        return cargaTotal;
+    }
 }
