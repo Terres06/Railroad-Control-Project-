@@ -67,4 +67,33 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         }
         return cargaTotal;
     }
+
+    public void quantidadeTipoVagao()
+    {
+        int qntLocomotiva = 0;
+        int qntVagoesPassageiros = 0;
+        int qntCarga = 0;
+
+        rewind();
+        for(int i = 0; i < size; i++)
+        {
+            Object obj = next();
+            if(obj instanceof Locomotiva l)
+            {
+                qntLocomotiva++;
+            }
+            else if(obj instanceof Passageiros p)
+            {
+                qntVagoesPassageiros++;
+            }
+            else if(obj instanceof Carga c)
+            {
+                qntCarga++;
+            }
+        }
+
+        System.out.println("Quantidade de locomotivas: "+qntLocomotiva);
+        System.out.println("Quantidade de vagoes de passageiros: "+qntVagoesPassageiros);
+        System.out.println("Quantidade de vagoes de carga: "+qntCarga);
+    }
 }
