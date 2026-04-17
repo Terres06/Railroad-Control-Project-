@@ -1,4 +1,6 @@
-public class Passageiros extends Vagao {
+import java.io.Serializable;
+
+public class Passageiros extends Vagao implements Serializable {
     private int numeroPassageiros;
 
     public Passageiros(double comprimento, double peso, int numeroPassageiros) {

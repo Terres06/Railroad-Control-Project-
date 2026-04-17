@@ -1,4 +1,6 @@
-public class Locomotiva extends Vagao {
+import java.io.Serializable;
+
+public class Locomotiva extends Vagao implements Serializable {
     private double potencia;
 
     public Locomotiva(double comprimento, double peso, double potencia) {

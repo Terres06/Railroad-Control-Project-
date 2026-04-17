@@ -1,4 +1,6 @@
-public class Carga extends Vagao {
+import java.io.Serializable;
+
+public class Carga extends Vagao implements Serializable {
     private double capacidadeCarga;
 
     public Carga(double comprimento, double peso, double capacidadeCarga) {
