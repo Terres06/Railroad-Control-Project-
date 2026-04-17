@@ -99,7 +99,7 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
 
     public void criarComposicaoPadrao() {
         while (!isEmpty()) {
-            deleteFirst();
+            deleteLast();
         }
 
         addLast(new Locomotiva(20, 150, 4000));
