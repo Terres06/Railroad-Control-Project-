@@ -68,33 +68,48 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         return cargaTotal;
     }
 
-    public void quantidadeTipoVagao()
+    public int contarVagoesLocomotivas()
     {
-        int qntLocomotiva = 0;
-        int qntVagoesPassageiros = 0;
-        int qntCarga = 0;
-
+        int qnt = 0;
         rewind();
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++) 
         {
             Object obj = next();
-            if(obj instanceof Locomotiva l)
+            if (obj instanceof Locomotiva l)
             {
-                qntLocomotiva++;
-            }
-            else if(obj instanceof Passageiros p)
-            {
-                qntVagoesPassageiros++;
-            }
-            else if(obj instanceof Carga c)
-            {
-                qntCarga++;
+                qnt++;
             }
         }
+        return qnt;
+    }
 
-        System.out.println("Quantidade de locomotivas: "+qntLocomotiva);
-        System.out.println("Quantidade de vagoes de passageiros: "+qntVagoesPassageiros);
-        System.out.println("Quantidade de vagoes de carga: "+qntCarga);
+    public int contarVagoesPassageiros()
+    {
+        int qnt = 0;
+        rewind();
+        for (int i = 0; i < size; i++) {
+            Object obj = next();
+            if (obj instanceof Passageiros p) 
+            {
+                qnt++;
+            }
+        }
+        return qnt;
+    }
+
+    public int contarVagoesCarga()
+    {
+        int qnt = 0;
+        rewind();
+        for (int i = 0; i < size; i++) 
+        {
+            Object obj = next();
+            if (obj instanceof Carga c) 
+            {
+                qnt++;
+            }
+        }
+        return qnt;
     }
 
     public void criarComposicaoPadrao() {
@@ -215,5 +230,33 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
             }
         }
         return totalPassageiros;
+    }
+
+    public void diagnostico() 
+    {
+        System.out.println("=== DIAGNÓSTICO DA COMPOSIÇÃO ===");
+
+        //Req 4 - quantidade por tipo
+        System.out.println("\n--- Vagões ---");
+        System.out.println("Total de vagões: " + getSize());
+        System.out.println("Locomotivas: " + contarVagoesLocomotivas());
+        System.out.println("Vagões de passageiros: " + contarVagoesPassageiros());
+        System.out.println("Vagões de carga: " + contarVagoesCarga());
+
+        //Req 5 - comprimento e peso total
+        System.out.println("\n--- Comprimento e Peso ---");
+        System.out.printf("Comprimento total: %.2f m%n", comprimentoTotal());
+        System.out.printf("Peso total: %.2f ton%n", calcularPesoTotal());
+
+        //Req 6 - passageiros e carga
+        System.out.println("\n--- Passageiros e Carga ---");
+        System.out.println("Total de passageiros: " + totalPassageiros());
+        System.out.printf("Total de carga: %.2f ton%n", calcularCargaTotal());
+
+        //Req 7 - verificação de potência
+        System.out.println("\n--- Potência ---");
+        verificarPotencia();
+
+        System.out.println("=================================");
     }
 }
