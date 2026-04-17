@@ -115,16 +115,91 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         double comprimentoTotal = 0;
         rewind();
 
-        for(int i = 0; i < size; i++)
+        for(int i = 0; i < getSize(); i++)
         {
             Vagao v = (Vagao) next();
             comprimentoTotal += v.getComprimento();
         }
 
-        if(size > 1)
+        if(getSize() > 1)
         {
-            comprimentoTotal += (size - 1)*2;
+            comprimentoTotal += (getSize() - 1)*2;
         }
         return comprimentoTotal;
     }
+    public double calcularPotenciaTotal() {
+        double potenciaTotal = 0;
+        rewind();
+        for (int i = 0; i < getSize(); i++) {
+            Object obj = next();
+            if (obj instanceof Locomotiva l) {
+                potenciaTotal += l.getPotencia();
+            }
+        }
+        return potenciaTotal;
+    }
+
+    public double calcularHpTon() {
+        double pesoTotal = calcularPesoTotal();
+        if (pesoTotal == 0)
+            return 0;
+        double potenciaTotal = calcularPotenciaTotal();
+        return potenciaTotal / pesoTotal;
+    }
+    
+    public void verificarPotencia() {
+        double pesoTotal = calcularPesoTotal();
+        double potenciaTotal = calcularPotenciaTotal();
+
+        if (pesoTotal == 0) {
+            System.out.println("Composição vazia.");
+            return;
+        }
+
+        double hpt = potenciaTotal / pesoTotal;
+
+        System.out.printf("HPT atual: %.2f HP/Ton\n", hpt);
+
+        if (hpt >= 1.05) {
+            System.out.println("Potência suficiente.");
+        } else {
+            System.out.println("Potência insuficiente.");
+
+            double potenciaNecessaria = pesoTotal * 1.05;
+            double falta = potenciaNecessaria - potenciaTotal;
+
+            System.out.printf("Falta %.2f HP para atingir o mínimo.\n", falta);
+
+            double potenciaPorLoco = getPotenciaPrimeiraLocomotiva();
+
+            if (potenciaPorLoco == 0) {
+                System.out.println("Não há locomotivas na composição para cálculo.");
+                return;
+            }
+
+            // 🔥 cálculo SEM Math.ceil
+            int qtd = (int)(falta / potenciaPorLoco);
+
+            if (falta > qtd * potenciaPorLoco) {
+                qtd++;
+            }
+
+            System.out.println("Sugestão: adicionar " + qtd + " locomotiva(s).");
+        }
+    }
+
+    private double getPotenciaPrimeiraLocomotiva() {
+        rewind();
+
+        for (int i = 0; i < getSize(); i++) {
+            Object obj = next();
+
+            if (obj instanceof Locomotiva l) {
+                return l.getPotencia();
+            }
+        }
+
+        return 0;
+    }
 }
+
