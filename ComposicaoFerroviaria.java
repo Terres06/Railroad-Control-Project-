@@ -96,4 +96,22 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         System.out.println("Quantidade de vagoes de passageiros: "+qntVagoesPassageiros);
         System.out.println("Quantidade de vagoes de carga: "+qntCarga);
     }
+
+    public double comprimentoTotal()
+    {
+        double comprimentoTotal = 0;
+        rewind();
+
+        for(int i = 0; i < size; i++)
+        {
+            Vagao v = (Vagao) next();
+            comprimentoTotal += v.getComprimento();
+        }
+
+        if(size > 1)
+        {
+            comprimentoTotal += (size - 1)*2;
+        }
+        return comprimentoTotal;
+    }
 }
