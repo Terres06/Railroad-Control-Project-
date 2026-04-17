@@ -177,7 +177,6 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
                 return;
             }
 
-            // 🔥 cálculo SEM Math.ceil
             int qtd = (int)(falta / potenciaPorLoco);
 
             if (falta > qtd * potenciaPorLoco) {
