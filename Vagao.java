@@ -1,4 +1,6 @@
-public class Vagao {
+
+import java.io.Serializable;
+public class Vagao implements Serializable {
     private double comprimento;
     private double peso;
 
@@ -25,6 +27,11 @@ public class Vagao {
     
     public String imprime(){
         return "Vagão: comprimento = " + comprimento + ", peso = " + peso;
+    }
+
+    @Override
+    public String toString() {
+        return imprime();
     }
 
 }
