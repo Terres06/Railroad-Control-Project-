@@ -20,7 +20,7 @@ public class Locomotiva extends Vagao implements Serializable {
     public String imprime() {
         return "Locomotiva: comprimento = " + getComprimento() + ", peso = " + getPeso() + ", potência = " + potencia;
     }
-    
+
     @Override
     public void setComprimento(double comprimento){
         if (comprimento <= 23 && comprimento >= 18){
@@ -30,7 +30,7 @@ public class Locomotiva extends Vagao implements Serializable {
         }
     }
 
-    @Override
+    @Override 
     public void setPeso(double peso){
         if (peso <= 200 && peso >= 100){
             super.setPeso(peso);
