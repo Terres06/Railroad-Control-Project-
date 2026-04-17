@@ -127,4 +127,20 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         }
         return comprimentoTotal;
     }
+
+    public int totalPassageiros()
+    {
+        int totalPassageiros = 0;
+
+        rewind();
+        for(int i = 0; i < size; i++)
+        {
+            Object obj = next();
+            if(obj instanceof Passageiros p)
+            {
+                totalPassageiros += p.getNumeroPassageiros();
+            }
+        }
+        return totalPassageiros;
+    }
 }
