@@ -17,8 +17,9 @@ public class Locomotiva extends Vagao implements Serializable {
     }
 
     @Override
-    public String imprime() {
-        return "Locomotiva: comprimento = " + getComprimento() + ", peso = " + getPeso() + ", potência = " + potencia;
+    public void imprime() {
+        super.imprime(); 
+        System.out.println("Tipo: Locomotiva. Potência: " + potencia + " HP.");
     }
 
     @Override

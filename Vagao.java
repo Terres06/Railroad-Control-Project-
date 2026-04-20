@@ -25,13 +25,13 @@ public class Vagao implements Serializable {
         this.peso = peso;
     }
     
-    public String imprime(){
-        return "Vagão: comprimento = " + comprimento + ", peso = " + peso;
+    public void imprime(){
+        System.out.println("Vagão: comprimento = " + comprimento + ", peso = " + peso);
     }
 
     @Override
     public String toString() {
-        return imprime();
+        return "Vagão: comprimento = " + comprimento + ", peso = " + peso;
     }
 
 }

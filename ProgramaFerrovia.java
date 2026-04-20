@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class ProgramaFerrovia {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ComposicaoFerroviaria cf = new ComposicaoFerroviaria(100, "composicao.dat");
@@ -21,9 +21,11 @@ public class Main {
             opcao = sc.next().charAt(0);
 
             switch (opcao) {
-                case 'a' -> cf.criarComposicaoPadrao();
+                case 'a':
+                    cf.criarComposicaoPadrao();
+                    break;
 
-                case 'b' -> {
+                case 'b': {
                     System.out.println("Posição: (i)nício ou (f)im?");
                     char pos = sc.next().charAt(0);
 
@@ -38,22 +40,24 @@ public class Main {
                     Vagao v = null;
 
                     switch (tipo) {
-                        case 'l' -> {
+                        case 'l':
                             System.out.print("Potência (HP): ");
                             double pot = sc.nextDouble();
                             v = new Locomotiva(comp, peso, pot);
-                        }
-                        case 'p' -> {
+                            break;
+                        case 'p':
                             System.out.print("Número de passageiros: ");
                             int pass = sc.nextInt();
-                            v = new Passageiros(comp, peso, pass);
-                        }
-                        case 'c' -> {
+                            v = new Passageiro(comp, peso, pass);
+                            break;
+                        case 'c':
                             System.out.print("Capacidade de carga (ton): ");
                             double carga = sc.nextDouble();
                             v = new Carga(comp, peso, carga);
-                        }
-                        default -> System.out.println("Tipo inválido.");
+                            break;
+                        default:
+                            System.out.println("Tipo inválido.");
+                            break;
                     }
 
                     if (v != null) {
@@ -61,33 +65,43 @@ public class Main {
                         else if (pos == 'f') cf.inserirFim(v);
                         else System.out.println("Posição inválida.");
                     }
+                    break;
                 }
 
-                case 'c' -> {
+                case 'c': {
                     System.out.println("Remover do (i)nício ou (f)im?");
                     char pos = sc.next().charAt(0);
                     if (pos == 'i') cf.removerInicio();
                     else if (pos == 'f') cf.removerFim();
                     else System.out.println("Posição inválida.");
+                    break;
                 }
 
-                case 'd' -> cf.diagnostico();
+                case 'd':
+                    cf.diagnostico();
+                    break;
 
-                case 'e' -> {
+                case 'e': {
                     Vagao v = (Vagao) cf.peekFront();
-                    if (v != null) System.out.println(v.imprime());
+                    if (v != null) v.imprime();
                     else System.out.println("Composição vazia.");
+                    break;
                 }
 
-                case 'f' -> {
+                case 'f': {
                     Vagao v = (Vagao) cf.peekRear();
-                    if (v != null) System.out.println(v.imprime());
+                    if (v != null) v.imprime();
                     else System.out.println("Composição vazia.");
+                    break;
                 }
 
-                case 'g' -> System.out.println("Encerrando...");
+                case 'g':
+                    System.out.println("Encerrando...");
+                    break;
 
-                default -> System.out.println("Opção inválida.");
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
             }
         }
 

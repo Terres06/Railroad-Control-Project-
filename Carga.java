@@ -17,16 +17,17 @@ public class Carga extends Vagao implements Serializable {
     }
 
     @Override
-    public String imprime() {
-        return "Vagão de Carga: comprimento = " + getComprimento() + ", peso = " + getPeso() + ", capacidade de carga = " + capacidadeCarga;
+    public void imprime() {
+        super.imprime();
+        System.out.println("Tipo: Carga. Capacidade de carga = " + capacidadeCarga);
     }
 
     @Override 
     public void setComprimento(double comprimento){
-        if (comprimento <= 12 && comprimento >= 19){
+        if (comprimento >= 12 && comprimento <= 19){
             super.setComprimento(comprimento);
         } else {
-            System.out.println("Comprimento inválido para vagão de carga. Deve ser entre 19 e 12 metros.");
+            System.out.println("Comprimento inválido para vagão de carga. Deve ser entre 12 e 19 metros.");
         }
     }
 

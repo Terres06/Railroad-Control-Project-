@@ -1,9 +1,9 @@
 import java.io.Serializable;
 
-public class Passageiros extends Vagao implements Serializable {
+public class Passageiro extends Vagao implements Serializable {
     private int numeroPassageiros;
 
-    public Passageiros(double comprimento, double peso, int numeroPassageiros) {
+    public Passageiro(double comprimento, double peso, int numeroPassageiros) {
         super(comprimento, peso);
         this.numeroPassageiros = numeroPassageiros;
     }
@@ -17,8 +17,9 @@ public class Passageiros extends Vagao implements Serializable {
     }
 
     @Override
-    public String imprime() {
-        return "Vagão de Passageiros: comprimento = " + getComprimento() + ", peso = " + getPeso() + ", número de passageiros = " + numeroPassageiros;
+    public void imprime() {
+        super.imprime();
+        System.out.println("Número de passageiros = " + numeroPassageiros);
     }    
 
     @Override

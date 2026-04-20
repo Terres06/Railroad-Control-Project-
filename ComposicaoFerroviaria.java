@@ -61,7 +61,8 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         rewind();
         for (int i = 0; i < size; i++){
             Object obj = next();
-            if (obj instanceof Carga c){
+            if (obj instanceof Carga){
+                Carga c = (Carga) obj;
                 cargaTotal += c.getPeso() * 0.75;
             }
         }
@@ -75,7 +76,7 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         for (int i = 0; i < size; i++) 
         {
             Object obj = next();
-            if (obj instanceof Locomotiva l)
+            if (obj instanceof Locomotiva)
             {
                 qnt++;
             }
@@ -89,7 +90,7 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         rewind();
         for (int i = 0; i < size; i++) {
             Object obj = next();
-            if (obj instanceof Passageiros p) 
+            if (obj instanceof Passageiro) 
             {
                 qnt++;
             }
@@ -104,7 +105,7 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         for (int i = 0; i < size; i++) 
         {
             Object obj = next();
-            if (obj instanceof Carga c) 
+            if (obj instanceof Carga) 
             {
                 qnt++;
             }
@@ -117,11 +118,15 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
             deleteLast();
         }
 
-        addLast(new Locomotiva(20, 150, 4000));
-        addLast(new Passageiros(24, 40, 80));
-        addLast(new Passageiros(24, 42, 72));
-        addLast(new Carga(15, 28, 21));
-        addLast(new Carga(15, 30, 22.5));
+        addLast(new Locomotiva(20, 150, 2500));
+
+        for (int i = 0; i < 50; i++) {
+            addLast(new Passageiro(24, 40, 30));
+        }
+
+        for (int i = 0; i < 30; i++) {
+            addLast(new Carga(17, 20, 15));
+        }
 
         salvar();
     }
@@ -147,7 +152,8 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         rewind();
         for (int i = 0; i < getSize(); i++) {
             Object obj = next();
-            if (obj instanceof Locomotiva l) {
+            if (obj instanceof Locomotiva) {
+                Locomotiva l = (Locomotiva) obj;
                 potenciaTotal += l.getPotencia();
             }
         }
@@ -208,7 +214,8 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         for (int i = 0; i < getSize(); i++) {
             Object obj = next();
 
-            if (obj instanceof Locomotiva l) {
+            if (obj instanceof Locomotiva) {
+                Locomotiva l = (Locomotiva) obj;
                 return l.getPotencia();
             }
         }
@@ -224,8 +231,9 @@ public class ComposicaoFerroviaria extends Deque implements Serializable {
         for(int i = 0; i < size; i++)
         {
             Object obj = next();
-            if(obj instanceof Passageiros p)
+            if(obj instanceof Passageiro)
             {
+                Passageiro p = (Passageiro) obj;
                 totalPassageiros += p.getNumeroPassageiros();
             }
         }
