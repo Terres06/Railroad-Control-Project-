@@ -52,9 +52,7 @@ public class ProgramaFerrovia {
                                 v = new Passageiro(comp, peso, pass);
                                 break;
                             case 'c':
-                                System.out.print("Capacidade de carga (ton): ");
-                                double carga = sc.nextDouble();
-                                v = new Carga(comp, peso, carga);
+                                v = new Carga(comp, peso);
                                 break;
                             default:
                                 System.out.println("Tipo inválido.");

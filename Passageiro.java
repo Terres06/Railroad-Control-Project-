@@ -28,8 +28,8 @@ public class Passageiro extends Vagao implements Serializable {
 
     @Override
     public void imprime() {
-        super.imprime();
         System.out.println("Número de passageiros = " + numeroPassageiros);
+        super.imprime();
     }    
 
     @Override

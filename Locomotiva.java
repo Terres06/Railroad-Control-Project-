@@ -29,7 +29,7 @@ public class Locomotiva extends Vagao implements Serializable {
     @Override
     public void imprime() 
     {
-        super.imprime();
         System.out.println("Tipo: Locomotiva. Potência: " + potencia + " HP.");
+        super.imprime();
     }
 }

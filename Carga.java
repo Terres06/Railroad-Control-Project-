@@ -1,35 +1,20 @@
 import java.io.Serializable;
 
 public class Carga extends Vagao implements Serializable {
-    private double capacidadeCarga;
-
-    public Carga(double comprimento, double peso, double capacidadeCarga) {
+    public Carga(double comprimento, double peso) {
         super(0, 0);
         setComprimento(comprimento);
         setPeso(peso);
-        setCapacidadeCarga(capacidadeCarga);
     }
 
-    public double getCapacidadeCarga() {
-        return capacidadeCarga;
-    }
-
-    public void setCapacidadeCarga(double capacidadeCarga) 
-    {
-        if(capacidadeCarga >= 11.25 && capacidadeCarga <= 22.5) 
-        {
-            this.capacidadeCarga = capacidadeCarga;
-        } 
-        else
-        {
-            throw new IllegalArgumentException("Capacidade de carga inválida. Deve ser entre 11.25 e 22.5 toneladas");
-        }
+    public double getCarga() {
+        return getPeso() * 0.75;
     }
 
     @Override
     public void imprime() {
+        System.out.println("Tipo: Carga. Carga = " + getCarga());
         super.imprime();
-        System.out.println("Tipo: Carga. Capacidade de carga = " + capacidadeCarga);
     }
 
     @Override 
