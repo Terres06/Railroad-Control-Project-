@@ -39,25 +39,29 @@ public class ProgramaFerrovia {
 
                     Vagao v = null;
 
-                    switch (tipo) {
-                        case 'l':
-                            System.out.print("Potência (HP): ");
-                            double pot = sc.nextDouble();
-                            v = new Locomotiva(comp, peso, pot);
-                            break;
-                        case 'p':
-                            System.out.print("Número de passageiros: ");
-                            int pass = sc.nextInt();
-                            v = new Passageiro(comp, peso, pass);
-                            break;
-                        case 'c':
-                            System.out.print("Capacidade de carga (ton): ");
-                            double carga = sc.nextDouble();
-                            v = new Carga(comp, peso, carga);
-                            break;
-                        default:
-                            System.out.println("Tipo inválido.");
-                            break;
+                    try {
+                        switch (tipo) {
+                            case 'l':
+                                System.out.print("Potência (HP): ");
+                                double pot = sc.nextDouble();
+                                v = new Locomotiva(comp, peso, pot);
+                                break;
+                            case 'p':
+                                System.out.print("Número de passageiros: ");
+                                int pass = sc.nextInt();
+                                v = new Passageiro(comp, peso, pass);
+                                break;
+                            case 'c':
+                                System.out.print("Capacidade de carga (ton): ");
+                                double carga = sc.nextDouble();
+                                v = new Carga(comp, peso, carga);
+                                break;
+                            default:
+                                System.out.println("Tipo inválido.");
+                                break;
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
                     }
 
                     if (v != null) {
